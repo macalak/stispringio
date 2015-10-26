@@ -5,6 +5,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * This class models the Library user.
@@ -13,6 +14,7 @@ import javax.persistence.Id;
  *
  */
 @Entity
+@Table(name="USER_TBL")
 public class User {
 	
 	@Id

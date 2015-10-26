@@ -5,6 +5,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * 
@@ -14,6 +15,7 @@ import javax.persistence.Id;
  *
  */
 @Entity
+@Table(name="MEDIUM_TBL")
 public abstract class Medium {
 	
 	@Id
