@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+							http://www.springframework.org/schema/jdbc
+							http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- Imports application configuration -->
+	<import resource="classpath:ite/librarymaster/application-config.xml"/>
+	
+	<!-- Creates an in-memory database populated with test data for fast testing -->
+	 
+	<jdbc:embedded-database id="dataSource">
+		<jdbc:script location="${schemaLocation}"/>
+		<jdbc:script location="${testDataLocation}"/>
+	</jdbc:embedded-database>
+
+	<bean id="jdbcBookRepository" class="ite.librarymaster.dao.JdbcBookRepository">
+	    <property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<!-- Replaces ${placeholders} with values in testdb.properties -->
+	<context:property-placeholder location="classpath:ite/librarymaster/testdb/testdb.properties"/>
+
+</beans>

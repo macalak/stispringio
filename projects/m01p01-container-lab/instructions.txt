@@ -1,0 +1,53 @@
+In order to initialize and wire application components together, you need to create Spring application configuration file.
+Then you need to define Spring Beans, and wire them together to satisfy all required dependencies.
+There is ite.librarymaster.service.LibraryServiceImplTest JUnit test already implemented in src/test/java folder,
+which can be used to verify the application initialization. 
+
+1. Run the LibraryServiceImplTest JUnit test, and check the output. Test should fail.
+
+2. Spring configuration is typically externalized from Java code. 
+   Create new application-config.xml file in ite.librarymaster package under src/main/java folder.
+   This file tells Spring how to configure your application components.
+   The template should look similar as this one:
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+		<!-- Configuration for the library master application.  Beans here define the heart of the application logic. -->
+	</beans>
+
+3. Now define each required bean, which your application consists of.
+   First define libraryService Bean, which functionality is verified by the LibraryServiceImplTest JUnit test.
+   There is only one implementation of the ite.librarymaster.service.LibraryService interface, which is your Bean
+   implementation class as well. 
+   Notice that LibraryServiceImpl has constructor with UserRepository type parameter and setter method, which is used to set 
+   the BookRepository dependency. So, you should use constructor as well as setter dependency injection.
+
+    <!-- Library Master: entry-point of the application (main service)--> 
+	<bean id="libraryService" class="ite.librarymaster.service.LibraryServiceImpl">
+		<constructor-arg ref="userRepository"/>
+		<property name="bookRepository" ref="bookRepository"/>
+	</bean>
+
+   You can re-run LibraryServiceImplTest JUnit test, but it fails again.
+    
+4. The remaining task is to create definition of Repository Beans for User and Book.
+   There are in memory representations of User and Book repositories.
+   Do not forget to specify init-method attribute. Provided method will be called by container
+   after Bean instance is created.   
+
+	<!-- Book repository -->
+	<bean id="bookRepository" class="ite.librarymaster.dao.InMemoryBookRepository" init-method="initialize"/>
+
+	<!-- User repository -->
+	<bean id="userRepository" class="ite.librarymaster.dao.InMemoryUserRepository" init-method="initialize"/> 
+
+5. That it is. Check your result of your effort by running the ite.librarymaster.service.LibraryServiceImplTest JUnit test.
+   Now, the test result should be green.	
+   Notice the JUnit test setup method annotated by @Before annotation. This is the place where your application (in test environment)
+   is configured using ApplicationContext. In this case the ClassPathXmlApplicationContext implementation is used, which
+   takes class-path location of your application-config.xml configuration file.
+        

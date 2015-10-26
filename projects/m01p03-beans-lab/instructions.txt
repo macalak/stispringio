@@ -1,0 +1,79 @@
+Let's have a look at Spring Bean life-cycle features. 
+This Lab will help you to understand the basic concept.
+Bean life-cycle management will be demonstrated on ite.librarymaster.dao.JdbcBookRepository class.
+We need Spring container to initialize and properly destroy our bean, i.e. the initialize() method
+should be calls after bean instantiation and cleanup() method should be called after application
+context destruction. You will also learn, how Spring is able to manipulate Beam definition and
+Bean itself using Spring container extension points. 
+
+
+
+1. Run the JdbcBookRepositoryTest JUnit test. Test should run just fine.
+   Check console output and notice that neither JdbcBookRepository Bena's initialize()
+   method not cleanup() method was called by container during test execution.
+   Let's fix this.
+   
+ 
+2. We need to instruct Spring container to call callback methods either during Bean initialization or
+   Bean destruction. Open ite.librarymaster.dao.JdbcBookRepository class source code and notice
+   there are two life-cycle callback methods defined (there is no concrete  implementation, but log message is logged):
+   initialize(){...}
+   cleanup(){...}
+   
+   Annotate initialize() method  by @PostConstruct annotation and cleanup() method by @PreDestroy annotation.
+   Re-run the JdbcBookRepositoryTest test and check output console for appropriate log messages.
+ 
+3. It is good practice to externalize configuration variables into separate .properties files and use placeholders
+   instead real values in container configuration xml file. Spring comes with usefull PropertyPlacehoderConfigurer
+   BeanFactoryPostProcessor which replaces bean property placeholders with values from .properties file. Remember
+   that BeanFactoryPostProcessor is able to change Beans DEFINITION.
+    
+   There is dataSource bean defined in src/test/resources/ite/librarymaster/dao/JdbcBookRepositoryTest-context.xml.
+   There are two classpath sql file locations defined for this embedded data source. Let's externalize these values
+   into testdb.properties file and use ${placeholder}s instead concrete property values.
+   
+   Create Java property filesrc/test/resources/ite/librarymaster/testdb/testdb.properties with following content:
+                
+   schemaLocation=classpath:ite/librarymaster/testdb/schema.sql
+   testDataLocation=classpath:ite/librarymaster/testdb/test-data.sql
+
+   Then replace concrete values with placeholder in dataSource Bean configuration.
+
+   	<jdbc:embedded-database id="dataSource">
+		<jdbc:script location="${schemaLocation}"/>
+		<jdbc:script location="${testDataLocation}"/>
+	</jdbc:embedded-database>
+	
+	Now we need to tell Spring container to use PropertyPlacehoderConfigurer BeanFactoryPostProcessor.
+	We can do it by adding <context:property-placeholder/> element into JdbcBookRepositoryTest-context.xmlfile.
+	
+	<context:property-placeholder location="classpath:ite/librarymaster/testdb/testdb.properties"/>
+   	
+   	Try to execute JdbcBookRepositoryTest and see if it works.
+   	
+4. What about BeanPostProcessor ? The BeanPostProcessor can be used to apply behaviors to objects created by 
+   Spring container. Spring framework provides some useful implementations for you. You can also implements your owns.
+   What if we need to check if all Bean dependencies were set properly by container, before we use that Bean ?
+   Such check can be implemented by BeanPostProcessor. Luckily, Spring implements this by @Required annotation.
+   @Required annotation used with setter method assures that container checks, if dependency is not null before
+   our Bean uses it. Spring container uses RequiresannotationBeanPostProcessor as concrete implementation of 
+   the BeanPostProcessor.
+   
+   Try to comment out dataSource property definition for JdbcBookRepository Bean on JdbcBookRepositoryTest-context.xml.
+   <!-- <property name="dataSource" ref="dataSource"/> -->
+   Run the JdbcBookRepositoryTest and see what happens. The problem is that such errors can be found only during application
+   execution(when dataSource dependency is used for first time). It would be better to find such configuration error during 
+   application initialization itself.
+    
+   Now, annotate the public void setDataSource(DataSource dataSource) {...} method by @Required annotation and rerun the test 
+   again. There is error again, but see what kind of error is returned this time.
+   
+   Finally, uncomment the dataSource property definition in JdbcBookRepositoryTest-context.xml.
+   <property name="dataSource" ref="dataSource"/> 
+   
+   The application should now works as expected.
+   	   	
+5. You have learned how to use container life-cycle callbacks and usefull predefined BeanFactoryPostProcessor and BeanPostProcessor.
+   Now you can write and try your own PostProcessors.   
+   
+   

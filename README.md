@@ -6,6 +6,6 @@
 4. Take the Tomcat AS distribution with integrated Derby database from this repository [server/apache-tomcat-8.0.27.zip](https://raw.githubusercontent.com/macalak/stispringio/master/server/apache-tomcat-8.0.27.zip). Unzip it into *server/runtime* folder.
 
 ## Generate Eclipse project files and import projects into STS
-Go to project root folder (*projects/spring-mvc-01* for instance), and execute *gradlew eclipse* command. It generates Eclipse project files for you. Then open the STS, and use the *Import existing project into workspace...* feature. Do this for all available projects. First execution will download and install the Gradle build tool. You need to be connected to the internet.
+Go to project root folder (*projects/m01p01-container-solution* for instance), and execute *gradlew eclipse* command. It generates Eclipse project files for you. Then open the STS, and use the *Import existing project into workspace...* feature. Do this for all available projects. First execution will download and install the Gradle build tool. You need to be connected to the internet.
 
   

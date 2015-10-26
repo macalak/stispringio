@@ -1,0 +1,22 @@
+Now we are going to configure our Spring application using Java.
+We still need application-context configuration file in order to instruct Spring to use annotations. 
+There is ite.librarymaster.service.LibraryServiceImplTest JUnit test already implemented in src/test/java folder,
+which can be used to verify the application initialization. 
+
+
+1. Run the LibraryServiceImplTest JUnit test, and check the output. Test should fail.
+
+2. There is ite.librarymaster.LibraryConfig class where we are going to implement
+   Spring configuration. There is complete implementation of libraryService() method
+   which acts as factory method for LibraryService bean.   
+   Notice missing implementation of bookRepository() and userRepository() factory methods.
+   Implementation should be very simple. Just create new instances of repositories.
+   
+3. Now we need to instruct Spring to take the LibraryConfig class as container configuration and
+   its methods as Spring Beans factories. 
+   We can use @Configuration and @Bean annotations to achieve this goal. So annotate class with @Configuration
+   annotation and factory methods with @Bean annotation.         
+   	
+4. That it is. Check your result of your effort by running the ite.librarymaster.service.LibraryServiceImplTest JUnit test.
+   Now, the test result should be green.	
+   Notice @Annotations in JUnit test source file.  

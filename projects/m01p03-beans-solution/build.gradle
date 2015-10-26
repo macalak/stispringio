@@ -1,0 +1,48 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+ext.springVersion = '4.2.2.RELEASE'
+ext.jsr330Version=1
+ext.junitVersion = '4.12'
+ext.slf4jVersion = '1.7.12'
+ext.log4jVersion = '1.2.17'
+ext.hsqldbVersion = '2.3.2'
+ext.libraries = [
+    spring: [
+         "org.springframework:spring-beans:$springVersion",
+         "org.springframework:spring-context:$springVersion",
+         "org.springframework:spring-context-support:$springVersion",
+         "org.springframework:spring-core:$springVersion",
+         "org.springframework:spring-test:$springVersion",
+		 "org.springframework:spring-jdbc:$springVersion",
+    ],
+    jsr330: "javax.inject:javax.inject:$jsr330Version",
+    logging: [
+         "org.slf4j:slf4j-api:$slf4jVersion",
+         "org.slf4j:slf4j-log4j12:$slf4jVersion",
+         "log4j:log4j:$log4jVersion"
+    ],
+    junit: "junit:junit:$junitVersion",
+    hsqldb: "org.hsqldb:hsqldb:$hsqldbVersion"
+]
+
+// Override default buildDir to not conflict with Eclipse build directory
+buildDir="build_gradle"
+
+repositories {
+    jcenter()
+    maven { url "http://repo.springsource.org/release" }
+}
+
+dependencies {
+    compile     libraries.spring
+    compile     libraries.jsr330
+    compile     libraries.logging
+    testCompile libraries.junit
+    testRuntime libraries.hsqldb
+}
+
+task generateWrapper(type: Wrapper) {
+	gradleVersion = '2.7'
+}
