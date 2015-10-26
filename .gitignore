@@ -1,0 +1,11 @@
+sts-bundle
+workspace
+server/runtime
+spring-projects-source
+*.log
+.gradle
+.settings
+.classpath
+.project
+build_gradle
+
