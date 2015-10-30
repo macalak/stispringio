@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * JPA implementation of the BookRepository.
@@ -49,5 +50,16 @@ public class JpaBookRepository implements BookRepository {
 		entityManager.persist(book);
 	}
 
+	@Override
+	@Transactional
+	public void deleteBook(Long id) {
 
+		Book book = entityManager.find(Book.class, id);
+		if(book != null){
+			logger.info("Deleting book {}",book);
+			entityManager.remove(book);
+		}else{
+			logger.warn("Book with ID:{} not found", id);
+		}
+	}
 }

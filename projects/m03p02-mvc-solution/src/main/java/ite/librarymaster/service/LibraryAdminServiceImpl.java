@@ -41,4 +41,10 @@ public class LibraryAdminServiceImpl implements LibraryAdminService{
 			bookRepository.saveBook(book);
 		}
 	}
+
+	@Override
+	public void deleteBook(Long bookId) {
+		logger.info("<-");
+		bookRepository.deleteBook(bookId);
+	}
 }

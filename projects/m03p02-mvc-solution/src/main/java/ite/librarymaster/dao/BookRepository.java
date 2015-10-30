@@ -17,5 +17,6 @@ public interface BookRepository {
 	Book findById(Long id);
 	Book findByIsbn(String isbn);
 	void saveBook(Book book);
+	void deleteBook(Long id);
 
 }

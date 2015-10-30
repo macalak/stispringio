@@ -2,15 +2,15 @@
 	<div style="padding-top: 20px;">
         <h3>Detail of Book: &quot;<c:out value="${book.title}"/>&quot;</h3>
         <div>
-            <table style="width: 550px;margin-left:auto;margin-right:auto;">
-                <tbody>
-                    <tr>
-                        <td>Title:</td>
-                        <td><c:out value="${book.title}"/></td>
-                    </tr>
-                    <tr>
-                        <td>Author:</td>
-                        <td><c:out value="${book.author}"/></td>
+                <table style="width: 550px;margin-left:auto;margin-right:auto;">
+                    <tbody>
+                        <tr>
+                            <td>Title:</td>
+                            <td><c:out value="${book.title}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Author:</td>
+                            <td><c:out value="${book.author}"/></td>
                     </tr>
                     <tr>
                         <td>Publisher:</td>
@@ -28,7 +28,8 @@
                         <td>Cat ID:</td>
                         <td><c:out value="${book.catId}"/></td>
                     </tr>
-                </tbody>
-            </table>
+                        <td colspan="2"><div id="menu"><a href="<c:url value='/library//book/del/${book.id}' />" >Delete</a></div></td>
+                 </tbody>
+                </table>
         </div>
 </div>        

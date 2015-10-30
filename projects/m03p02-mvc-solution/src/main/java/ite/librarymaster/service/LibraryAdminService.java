@@ -14,5 +14,6 @@ public interface LibraryAdminService {
 	
 	void addBook(Book book);
 	void addBooks(List<Book> books);
+	void deleteBook(Long bookId);
 
 }

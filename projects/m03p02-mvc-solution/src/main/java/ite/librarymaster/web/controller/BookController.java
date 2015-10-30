@@ -11,6 +11,7 @@ import ite.librarymaster.web.validator.BookValidator;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ValidationUtils;
@@ -94,4 +95,14 @@ public class BookController {
 		}
 		return "addBook";
    }
+
+	@RequestMapping(value = "/book/del/{id}")
+	public ModelAndView deleteBook( @PathVariable("id") long id) {
+		adminService.deleteBook(id);
+		logger.info("Book with id {} deleted",id);
+		ModelAndView modelAndView = new ModelAndView("books");
+		modelAndView.addObject("books", libraryService.getAllBooks());
+		modelAndView.addObject("result", "Book deleted successfully");
+		return modelAndView;
+	}
 }
