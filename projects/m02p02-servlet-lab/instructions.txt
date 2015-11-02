@@ -1,0 +1,127 @@
+The Servlet API provides other useful components besides Servlets, which you can use in your web application.
+Such components are Servlet Filters and Listeners. Filters can be use to implement some cross-cutting concerns 
+as Security, Tracing, Auditing, or functionality as URL rewriting. Listeners can be used to add some application
+generic functionality related with Servlet, HTTP Session and HTTP Request lifecycle. In this Lab, you implement
+smple Servlet Filter and Listeners.
+
+1. What if you want to set the character encoding to HTTP Requests and HTTP Responses to support Slovak or any other
+language(s) for your web application? Handling of each simple request, or HTML page at Servlet(s) level would be cumbersome. 
+Your application can consist of many HTML pages. The best would be, if you can encapsulate such implementation into one
+component and apply required logic to all or selected pages. The Servlet filter component i the right one for this case.
+You need to support Slovak characters for LibraryMaster data. Let's chose the UTF-8 encoding.
+Open the InMemoryBookRepository class and notice books' data. They contain Slovak characters encoded as UTF-8.
+Deploy the application and check if Book titles are rendered correctly in the browser.
+
+2. Let's fix the character encoding issue. Open the DefaultUtf8Filter class from the ite.librarymaster.web.filter package.
+The main part of the filter is already implemented for you, but this class is not yet the Servlet filter.
+You should turn this class into Servlet Filter. A filter is able to intercept the HTTP Request and the HTTP Response, so the 
+implementation can change the request, or response encoding.
+Make DefaultUtf8Filter to implement Filter interface. The Filter interface contains three methods you need to implement: doFilter(),
+init(), destroy(). The names of the methods are self-descriptive. You can add some log messages into lifecycle callback methods init() and
+destroy(). The servlet container will call them when this filter is created, or destroyed respectively. 
+
+Hint: 
+
+	public class DefaultUtf8Filter implements Filter {
+		...
+		@Override
+    	public void init(FilterConfig filterConfig) throws ServletException {
+    		logger.info("Initializing Servlet filter...");
+    	}
+
+    	@Override
+    	public void destroy() {
+    		logger.info("Destroying Servlet filter...");
+    	}
+	}
+	
+ 3. As servlet container needs to recognize your filter, you should add some metadata. You can use the @WebFilter annotation, or configuration
+in the web.xml deployment descriptor. You can also combine these two approaches. Let's define filter using @WebFilter annotation and map filter
+to concrete URL pattern using configuration in the web.xml.     
+ 
+ Hint: 
+ 	@WebFilter(filterName = "DefaultUtf8Filter")
+ 	public class DefaultUtf8Filter  ... 
+ 	
+ Hint (web.xml):
+   <filter-mapping>
+        <filter-name>DefaultUtf8Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+   </filter-mapping> 
+
+4. Now, re-deploy your application and check if page is correctly rendered. The servlet filters can be chained together. So more than one filter
+can participate in HTTP request or response processing. There is ite.librarymaster.web.filter.NoCacheFilter implemented as well. Is the NoCacheFilter
+filter already applied, or you need to add some more configuration?  
+
+5. What, if you want to add audit of HTTP Sessions? For instance you want to know when HTTP Session is created and what is the session ID. 
+You can use the Servlet listener. The HttpSessionListener listener in this case. Create the new class in the ite.librarymaster.web.listener
+package and name it SessionAuditor. Class should implement the HttpSessionListener interface, which defines two methods to be implemented:
+sessionCreated() and sessionDestroyed(). 
+
+Hint:
+
+	public class SessionAuditor implements HttpSessionListener {
+		...
+		
+		@Override
+		public void sessionCreated(HttpSessionEvent se) {...}
+
+		@Override
+		public void sessionDestroyed(HttpSessionEvent se) {...}
+	}
+	
+6. A you probably know, the implementing Servlet component class is not enough. You always need to configure this component by meta-data.
+In case of Servlet listener, there is @WebListener annotation. So annotate the created SessionAuditor class by this annotation. 
+(You can also use web.xml deployment descriptor)
+
+ Hint:
+ 
+ 	@WebListener
+    public class SessionAuditor implements HttpSessionListener{...}	
+    
+7. Now implement the HTTP session audit. Log message when HTTP session is created. Use the sessionCreated() method.
+
+Hint:
+
+	HttpSession session = se.getSession();
+    StringBuffer message = new StringBuffer("Session Audit:\n");
+	message.append("	Creation time:").append(new Date(session.getCreationTime())).append("\n");
+	message.append("	ID:").append(session.getId()).append("\n");
+    logger.info(message.toString());
+
+8. What if you want the HTTP Session auditor behavior to be controlled by configuration in deployment descriptor? You can use the Servlet context
+parameters. They are defined in web.xml by <context-param> element. Define the AUDIT_LEVEL parameter with value FINE.  
+
+Hint (web.xml):
+
+ 	<context-param>
+    	<param-name>AUDIT_LEVEL</param-name>
+    	<param-value>FINE</param-value>
+  	</context-param>
+      	
+How to read the context parameter value in SessionAuditor? You should retrieve the ServletContext instance and get the context's AUDIT_LEVEL initialization 
+parameter value. The Servlet API provides useful methods. Change the session auditor code to log session details only, if there is FINE level of session
+auditing configured. 
+
+Hint:
+
+	ServletContext servletContext = session.getServletContext();
+	String auditLevel = servletContext.getInitParameter(AUDIT_LEVEL);
+    if(auditLevel != null && "FINE".equals(auditLevel)){
+    	...
+    }
+    
+9. Re-deploy your application and check the log messages.     
+    
+	
+
+
+     	
+ 	 
+ 
+  
+ 
+   
+
+  
+         

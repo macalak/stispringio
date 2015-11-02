@@ -1,0 +1,36 @@
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'idea'
+
+ext.slf4jVersion = '1.7.12'
+ext.log4jVersion = '1.2.17'
+ext.junitVersion = '4.12'
+ext.servletVersion = '3.1.0'
+
+ext.libraries = [
+    logging: [
+         "org.slf4j:slf4j-api:$slf4jVersion",
+         "org.slf4j:slf4j-log4j12:$slf4jVersion",
+         "log4j:log4j:$log4jVersion"
+    ],
+	servlet:  "javax.servlet:javax.servlet-api:$servletVersion",
+    junit: "junit:junit:$junitVersion"
+]
+
+// Override default buildDir to not conflict with Eclipse build directory
+buildDir="build_gradle"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile     libraries.logging
+    compile     libraries.servlet
+    testCompile libraries.junit
+}
+
+task generateWrapper(type: Wrapper) {
+	gradleVersion = '2.7'
+}

@@ -1,0 +1,93 @@
+In this Lab, you will implement the simple Java Servlet which returns the HTML page containing
+the list of Books from LibraryMaster. The Java Servlets extend the HTTP servers with the Java language, and enable
+you to implement the Web application using Java. Such server needs to implement a Servlet container where
+Servlets are executed and container manages a Servlet lifecycle.   
+
+1. Open the ListBookServlet class from the ite.librarymaster.controller package. There is no useful
+implementation there. Your task is to turn this class into Java Servlet and map it to <context>/books/all.html
+
+2. Each Java Servlet must extends the HttpServlet class from Java Servlet API. So extend the ListBookServlet from
+the HttpServlet class. In order to implement handling of HTTP Request override the HttpServlet's service() method.
+
+
+ Hint:
+	public class ListBookServlet extends HttpServlet {
+		@Override
+            protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {...}
+	}
+
+The HttpServlet class contains methods for handling the specific HTTP requests: HTTP GET -> doGet(), HTTP POST -> doPost(), etc....
+You can also override the doGet() method instead of service() method to GET all VideoBoss Customers page.
+You will implement the service() method later...
+
+3. The ListBookServlet uses the BookRepository instance to retrieve all books from the repository. You need to initialize
+the BookRepository. One option is to use the servlet's init() method, which is called by the Servlet container after the ListBookServlet
+is instantiated. So override the init() method and create new instance of the InMemoryBookRepository. The InMemoryBookRepository is already implemented in
+ite.librarymaster.dao package.
+
+Hint:
+
+   @Override
+       public void init() {
+       	logger.info("Initializing ListBookServlet...");
+   		bookRepository = new InMemoryBookRepository();
+   		((InMemoryBookRepository)bookRepository).initialize();
+       }
+
+
+4. The service() method of the ListBookServlet class should process incoming HTTP request and create the HTTP Response. The
+HTTP request is represented by the HttpServletRequest argument and the HTTP response is represented by the HttpServletResponse
+argument of the service() method. In order to create the HTML page you should write the HTML elements which construct the page into
+HttpServletResponse response. You should also set the correct content type of returned resource so client (Web browser) is able to
+correctly render the returned HTTP response (response.setContentType("text/html");). Use the bookRepository to get all books and
+construct the HTML page with list of books' detail.
+
+The simple /books/all.html page should look like:
+
+<html
+	<head><title> All Books Servlet Example </title></head>
+	<body>
+		<h1> List of all Books</h1>
+		<lu>
+			<li>Book [getAuthor()=George R. R. Martin, getIsbn()=9780006479888, getGenre()=Fantasy, getPublisher()=HarperCollins Publishers, getId()=1, getCatId()=LM-000001, getTitle()=A Game of Thrones, getAvailability()=Available]</li>
+        	<li>Book [getAuthor()=J.R.R. Tolkien, getIsbn()=9780345538376, getGenre()=Fantasy, getPublisher()=Random House Inc, getId()=2, getCatId()=LM-000002, getTitle()=The Hobbit, getAvailability()=Available]</li>
+        	<li>Book [getAuthor()=Isaac Asimov, getIsbn()=9780553382563, getGenre()=Scifi, getPublisher()=Random House Inc, getId()=4, getCatId()=LM-000004, getTitle()=I, Robot, getAvailability()=Available]</li>
+        	<li>Book [getAuthor()=Stieg Larsson, getIsbn()=9781849162883, getGenre()=Crime, getPublisher()=Quercus Publishing Plc, getId()=3, getCatId()=LM-000003, getTitle()=The Girl with the Dragon Tattoo, getAvailability()=Available]</li>
+		</lu>
+	</body>
+</html>
+
+Hint:
+        List<Book> allBooks = bookRepository.findAll();
+
+        response.setContentType("text/html");
+   		PrintWriter writer = response.getWriter();
+
+   		writer.println("<html");
+   		writer.println("<head><title> All Books Servlet Example </title></head>");
+  		writer.println("<body>");
+   		writer.println("<h1> List of all Books</h1>");
+   		writer.println("<lu>");
+   		for(Book book : allBooks){
+			writer.println("<li>"+book+"</li>");
+   		}
+   		writer.println("</lu>");
+   		writer.println("</body>");
+        writer.println("</html>");
+	
+    
+Task: Use HTML table instead of list to present the Books.
+
+5. Now you need to tell Servlet container about your servlet. You can use the @WebServlet class level annotation.
+So annotate the ListBookServlet class and map the servlet to /books/all.html URL.
+
+Hint:
+
+	@WebServlet("/books/all.html")
+    public class ListBookServlet  ...
+    
+    
+Task: Do you know, how to configure Servlet in web.xml deployment descriptor? Try it.
+
+6. The ListBookServlet should be ready. Now deploy your application on Tomcat AS and verify, if All Books page is correctly rendered
+in the Web browser. There is index.html already implemented with URL link to /books/all.html.

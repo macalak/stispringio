@@ -1,0 +1,2 @@
+Basic JSP example.
+Usage of Java code in JSP page.

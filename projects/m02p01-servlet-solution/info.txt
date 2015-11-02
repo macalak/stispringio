@@ -1,0 +1,2 @@
+Basic Java Servlet example.
+ListBookServlet writes the content of the HTML page directly into HTTP Response.

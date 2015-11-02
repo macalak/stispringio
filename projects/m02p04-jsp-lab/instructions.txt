@@ -1,0 +1,16 @@
+Implementing the complete Web application using the Java Servlets it does not support the productivity and
+separation of concerns. The Servlet mixes the presentation with business logic so change in any layer will
+require modification of Servlet code. The developer needs to be expert in Web technologies as well as in 
+Java server side programming. The JSP technology separates the web layer and business layer and it is build
+on top of Java Servlet technology. You can also use the Java code directly in the JSP page, but this approach
+can be eliminates by using the JSTL tags.
+This Lab demonstrates simple Java web application with JSPs on presentation layer.
+
+1. First, deploy the application and open the http://localhost:8080/m02p04-jsp-lab in web browser.
+The HTML page containing the Users table should be rendered. Now open the users.jsp page and review it.
+Notice that Java code is mixed with HTML code.
+
+2. Your task is to implement the books.jsp page which will contain the list of books. You can use the existing LibraryService
+implementation directly to retrieve list of Books.
+
+      
