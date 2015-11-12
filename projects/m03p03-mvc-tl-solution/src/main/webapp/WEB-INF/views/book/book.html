@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:substituteby="./fragments/headTag :: headTag"/>
+<body>
+
+
+
+    <div class="container">
+        <div th:substituteby="./fragments/bodyHeader :: bodyHeader"></div>
+        <table class="table table-stripped" style="width:600px;">
+            <tbody>
+            <tr>
+                <td>Title:</td>
+                <td th:text="${book.title}"/>
+            </tr>
+            <tr>
+                <td>Author:</td>
+                <td th:text="${book.author}"/>
+            </tr>
+            <tr>
+                <td>Publisher:</td>
+                <td th:text="${book.publisher}"/>
+            </tr>
+            <tr>
+                <td>Genre:</td>
+                <td th:text="${book.genre}"/>
+            </tr>
+            <tr>
+                <td>ISBN:</td>
+                <td th:text="${book.isbn}"/>
+            </tr>
+            <tr>
+                <td>Cat ID:</td>
+                <td th:text="${book.catId}"/>
+            </tr>
+            </tbody>
+        </table>
+        <div th:substituteby="./fragments/footer :: footer"></div>
+    </div>
+
+</body>
+</html>
