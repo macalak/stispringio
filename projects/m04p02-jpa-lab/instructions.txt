@@ -1,0 +1,51 @@
+In this Lab you learn how to configure and use Data Access using JPA.
+Spring has support for Hibernate 4, so you will gain basic experience with it.
+
+1. First review the ite.librarymaster.model package where you can find 
+   the persistent Entity classes. Notice, that these classes are already 
+   annotated by Java persistence annotations.
+   
+   There are JUnit tests already created for you.
+        
+2. Open the ite.library master.dao.JpaBooRepository class source code.
+   Notice it uses the JPA EntityManager. You need to ensure that the right
+   Persistence Context represented by EntityManager will be injected by
+   the Spring container.
+   
+   Annotate entityManager field by Java persistence @PersistenceContext annotation.
+    
+3. There is missing implementation of the findById(...) method.
+
+   Add implementation using convenient find(...) method of EntityManager. 
+   Hint: return entityManager.find(Book.class, id);
+
+4. Now open the src/test/resources/ite/librarymaster/dao/JpaBookRepositoryTest-context.xml
+   file and define entityManagerFactory bean.
+
+    Hint:
+    <bean id="entityManagerFactory"
+        class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan" value="ite.librarymaster.model" />
+        <property name="jpaVendorAdapter">
+            <bean
+                class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="databasePlatform"
+                    value="org.hibernate.dialect.H2Dialect" />
+                <property name="showSql" value="true" />
+                <!-- other properties -->
+            </bean>
+        </property>
+        <property name="persistenceUnitName" value="OpenPU" />
+    </bean>       
+
+   Notice there is embedded dataSource used for testing purposes.
+
+5. What about to implement Main class to run this example as stand-alone application ?
+   Try to use the real Derby database. You will need to define the application configuration
+   xml file.
+   Refer solution project for details.
+      
+6. You have learned how to access data using JPA.
+
+   

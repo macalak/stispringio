@@ -1,0 +1,37 @@
+In this Lab you learn how to configure and use Data Access using JDBC.
+The Spring framework provide the JdbcTemplate, which simplifies data access
+and eliminates the boilerplate code.
+There is the ite.librarymaster.dao.JdbcBookRepository implemented for you,
+but the implementation is not complete. Your task is to add missing part of code. 
+
+
+1. First, you need to assure that DataSource is injected using Constructor injection,
+   so annotate the JdbcBookRepository(DataSource dataSource) constructor with right
+   annotation. (Hint: You can use either Spring, or JSR330 annotation)
+   
+   Then create the JdbcTemplate using injected dataSource instance.
+   Hint: this.jdbcTemplate=new JdbcTemplate(dataSource);
+   
+2. There is incomplete implementation of findById(Long id){...} method.
+   Do you know what is the purpose of RowMaper ? What about to use it.
+   Have a look at inner BookRowMapper class and finish its implementation.
+   (Hint: return mapBook(rs);)
+   
+   Now use the instance of BookRowMapper along with jdbcTemplate in findById(...) method.
+   Hint:return jdbcTemplate.queryForObject(sql, rowMapper, id);
+   	  
+   The findById(...) method implementation should be complete now.
+    
+3. You need to implement the findByIsbn(...) too. Now try to use the Spring's BeanPropertyRowMapper.
+   This is convenient way how to map ResultSet to Book object.
+   Hint:
+        Book book = (Book)jdbcTemplate.queryForObject(
+				sql, new Object[] { isbn }, 
+				BeanPropertyRowMapper.newInstance(Book.class));
+		return book;
+  
+4. Finally add missing implementation of the JdbcBookRepositoryTest.testFindById() Test.
+	
+5. You have learned how to use JDBC data access with Spring.
+   
+   
