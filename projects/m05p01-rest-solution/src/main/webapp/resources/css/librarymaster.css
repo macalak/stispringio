@@ -1,0 +1,171 @@
+body, div, td {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:12px;
+  color:#666;
+}
+
+body {
+  background-color: #fff;
+  background-image: url(../images/librarymaster-banner.png);
+  background-position: top center;
+  background-repeat: no-repeat;
+  text-align:center;
+  min-width:600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1{
+  font-family:Helvetica, sans-serif;
+  color:#4f372d;
+  font-size:26px;
+  line-height:40px;
+}
+
+h2{
+  font-family:Helvetica, sans-serif;
+  color:#4f372d;
+  font-size:18px;
+  line-height:36px;
+}
+
+h3{
+  font-family:Helvetica, sans-serif;
+  color:#4f372d;
+  font-size:16px;
+  line-height:32px;
+}
+
+a:link{color:#4f372d; text-decoration:underline; font-size:13px;}
+a:hover{color:#eb6841; text-decoration:underline; font-size:13px;}
+a:active{color:#7db223; text-decoration:underline; font-size:13px;}
+a:visited{color:#7db223; text-decoration:underline; font-size:13px;}
+
+ul {
+  list-style: disc url(images/bullet.gif);
+}
+
+li {
+  padding-top:5px;
+}
+
+li ul {
+  list-style: square url(images/sub-bullet.gif);
+}
+
+li ul li ul {
+  list-style: circle none;
+}
+
+#main_wrapper {
+  margin:0 auto;
+  position:relative;
+  top: 85px;
+  left:20px;
+  width:600px;
+  text-align:left;
+}
+
+table {
+  padding-top: 10px; 
+  background: #ffffff;
+  margin: 0;
+  border: 1px solid #4f372d;
+  border-collapse: collapse;
+}
+
+table table {
+  margin: -5px 0;
+  border: 0px solid #e0e7d3;
+  width:100%;
+}
+
+table td, table th {
+  padding:4px;
+}
+
+table th {
+  font-size:12px;
+  text-align: left;
+  font-weight: bold;
+}
+
+table thead {
+  font-weight:bold;
+  font-style:italic;
+  background-color:#ffffff;
+}
+
+caption { 
+  caption-side: top; 
+  width: auto;
+  text-align: left;
+  font-size:12px;
+  color:#848f73;
+  padding-bottom:4px;
+}
+
+
+fieldset {
+  background:#e0e7d3;
+  padding:8px;
+  padding-bottom:22px;
+  border: none;
+  width:560px;
+}
+
+fieldset label {
+  width:70px;
+  float:left;
+  margin-top:1.7em;
+  margin-left:20px;
+}
+
+fieldset textfield {
+  margin:3px;
+  height:20px; 
+  background:#e4eadb;
+}
+
+fieldset textarea {
+  margin:3px;
+  height:165px;
+  background:#e4eadb;
+}
+
+fieldset input {
+  margin:3px;
+  height:20px;
+  background:#e4eadb;
+}
+
+fieldset table{width:100%;}
+fieldset th{padding-left:25px;}
+
+#menu ul
+{
+    margin: 0px;
+    padding: 10px;
+    list-style-type: none;
+}
+
+#menu a
+{
+    display: block;
+    width: 8em;
+    color: white;
+    background-color: #4f372d;
+    text-decoration: none;
+    text-align: center;
+}
+
+#menu a:hover
+{
+    background-color:#eb6841;
+}
+
+#menu li
+{
+    float: left;
+    margin-right: 0.5em;
+}

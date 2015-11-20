@@ -5,12 +5,11 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Transient;
 
 /**
  * This class models a Book media type.
  * 
- * @author macalak@itexperts.sk
+ * @author ivan.macalak@posam.sk
  *
  */
 
@@ -20,7 +19,7 @@ import javax.persistence.Transient;
 	@NamedQuery(name="book.findByIsbn", query="from Book where ISBN=:isbn")
 }) 
 public class Book extends Text {
-
+	
 	private String author;
 	private String isbn;
 	@Enumerated(EnumType.STRING)

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:substituteby="./fragments/headTag :: headTag"/>
+<body>
+
+    <div class="container">
+        <div th:substituteby="./fragments/bodyHeader :: bodyHeader"></div>
+        <table class="table table-stripped" style="width:600px;">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>TITLE</th>
+                <th>AUTHOR</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${books}">
+                <td th:text="${item.id}"/>
+                <td><a th:href="@{book/__${item.id}__}" th:text="${item.title}"/></td>
+                <td th:text="${item.author}"/>
+            </tr>
+            </tbody>
+        </table>
+        <div th:substituteby="./fragments/footer :: footer"></div>
+    </div>
+
+</body>
+</html>

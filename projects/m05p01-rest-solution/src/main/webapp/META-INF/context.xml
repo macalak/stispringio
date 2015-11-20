@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context path="/myApp" docBase="myApp"
+   crossContext="true" reloadable="true" debug="1">
+		  
+		  <Resource name="jdbc/LibraryMaster"
+              type="javax.sql.DataSource"  auth="Container"
+              description="Derby database for LibraryMaster"
+			  global="jdbc/LibraryMaster"
+              maxActive="20" maxIdle="10" maxWait="10000"
+              username="library" password="library" 
+              driverClassName="org.apache.derby.jdbc.ClientDriver"
+              url="jdbc:derby://localhost:1527/LibraryMasterDB"/>
+</Context>
