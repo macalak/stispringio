@@ -1,0 +1,16 @@
+<table class="table table-stripped" style="width:600px;">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>TITLE</th>
+        <th>AUTHOR</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="book in books">
+        <td>{{book.id}}</td>
+        <td><a ui-sref="library.books.book({id:book.id})">{{book.title}}</a></td>
+        <td>{{book.author}}</td>
+    </tr>
+    </tbody>
+</table>

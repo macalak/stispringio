@@ -1,9 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="libraryApp">
 <head>
-    <meta HTTP-EQUIV="REFRESH" content="0; url=http://localhost:8080/m05p01-rest-solution/library/books">
+    <meta charset="utf-8"/>
+    <title>LibraryMaster</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css">
+    <!--<link rel="stylesheet" href="resources/css/librarymaster.css">-->
 </head>
 <body>
-Redirecting ...
+
+<div class="container">
+
+    <img src="resources/images/librarymaster-banner.png">
+
+    <div class="navbar" style="width: 601px;">
+        <div class="navbar-inner">
+            <ul class="nav">
+                <li style="width: 100px;"><a ui-sref="library.books">Books</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div ui-view></div>
+
+    <div class="footer">
+        <span align="right">Ivan Macalak</span>
+    </div>
+</div>
+
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+
+<script src="app/app.js"></script>
+<script src="app/books/booksModule.js"></script>
+<script src="app/books/controllers/booksCtrl.js"></script>
+<script src="app/books/controllers/bookCtrl.js"></script>
+<script src="app/books/resources/booksResource.js"></script>
+<script src="app/books/resources/bookResource.js"></script>
 </body>
 </html>
