@@ -1,0 +1,25 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "Spring workshop example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macalak/stispringio.git"
+  },
+  "author": "macalak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/macalak/stispringio/issues"
+  },
+  "homepage": "https://github.com/macalak/stispringio#readme",
+  "devDependencies": {
+    "browser-sync": "^2.10.0",
+    "gulp": "^3.9.0",
+    "gulp-connect": "~2.0.6",
+    "proxy-middleware": "~0.5.0"
+  }
+}
