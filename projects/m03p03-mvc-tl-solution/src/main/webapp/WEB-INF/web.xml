@@ -5,6 +5,11 @@
          version="3.0">
 
 
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
 	<!-- Beans in these files will makeup the configuration of the root web application context -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -15,6 +20,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
 
 	<!-- Deploys the 'books' dispatcher servlet whose configuration resides in /WEB-INF/library-servlet-config.xml -->
 	<servlet>
@@ -30,7 +36,7 @@
 	<!-- Maps all /accounts URLs to the 'libraryServlet' servlet -->
 	<servlet-mapping>
 		<servlet-name>libraryServlet</servlet-name>
-		<url-pattern>/library/*</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 	
 	<resource-ref>
@@ -39,5 +45,7 @@
   		<res-type>javax.sql.DataSource</res-type>
   		<res-auth>Container</res-auth>
   	</resource-ref>
+
+
 
 </web-app>

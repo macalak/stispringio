@@ -1,5 +1,6 @@
 sts-bundle
 workspace
 server/runtime
+server/apache-tomcat-8.0.27/
 spring-projects-source
 *.log

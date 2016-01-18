@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Context path="/myApp" docBase="myApp"
+<Context path="/library" docBase="/"
    crossContext="true" reloadable="true" debug="1">
 		  
 		  <Resource name="jdbc/LibraryMaster"

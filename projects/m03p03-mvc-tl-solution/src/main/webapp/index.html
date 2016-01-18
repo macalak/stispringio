@@ -1,9 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta HTTP-EQUIV="REFRESH" content="0; url=http://localhost:8080/m03p03-mvc-tl-solution/library/books">
+    <title>Library Master</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <link href="http://cdn.jsdelivr.net/webjars/font-awesome/4.5.0/css/font-awesome.min.css"
+          th:href="@{/webjars/font-awesome/4.5.0/css/font-awesome.min.css}"
+          rel="stylesheet" media="screen"/>
+    <link href="resources/css/styles.css"
+          th:href="@{/resources/css/styles.css}"
+          rel="stylesheet" media="screen" />
+
 </head>
 <body>
-Redirecting ...
+<!-- Header -->
+<div th:replace="views/fragments/header :: header">
+    <!-- ============================================================================ -->
+    <!-- This content is only used for static prototyping purposes (natural templates)-->
+    <!-- and is therefore entirely optional, as this markup fragment will be included -->
+    <!-- from "views/fragments/header.html" at runtime.                               -->
+    <!-- ============================================================================ -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="http://www.itexperts.sk" target="_blank">
+                    <i class="fa fa-chevron-circle-right"></i>  <span class="light">Library</span> Master
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="login.html">
+                            <i class="glyphicon glyphicon-log-in"></i> Login
+                        </a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="books">
+                            <i class="glyphicon glyphicon-book"></i> Books
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <header class="bgimage img-rounded">
+        <div class="container">
+        </div>
+    </header>
+</div>
+
+
+<!-- About Section -->
+<section id="about" class="container content-section hidden-xs">
+    <div class="row">
+        <div class="col-xs-9 col-xs-offset-2">
+            <p class="h3 text-justify"> Vitajte v Kniznici</p>
+        </div>
+
+    </div>
+</section>
+
+    <footer>
+        <div th:replace="views/fragments/footer :: footer">
+            <!-- ============================================================================ -->
+            <!-- This content is only used for static prototyping purposes (natural templates)-->
+            <!-- and is therefore entirely optional, as this markup fragment will be included -->
+            <!-- from "views/fragments/header.html" at runtime.                               -->
+            <!-- ============================================================================ -->
+            <div id="contact" class="container content-section text-center">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <ul class="list-inline banner-social-buttons">
+                            <li>
+                                <a href="https://twitter.com/IMacalak" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/ivan.macalak" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/macalak" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                            </li>
+                        </ul>
+                        <p>Copyright &copy; itExperts 2016   <a href="mailto:info@itexperts.sk">info@itexperts.sk</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.2.0/jquery.min.js"
+        th:src="@{/webjars/jquery/2.2.0/jquery.min.js}"></script>
+<script src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
+
 </body>
 </html>

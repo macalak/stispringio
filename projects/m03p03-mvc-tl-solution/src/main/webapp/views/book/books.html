@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:substituteby="./fragments/headTag :: headTag"/>
+<head th:substituteby="fragments/headTag :: headTag"/>
 <body>
+    <div th:replace="fragments/header :: header"/>
 
     <div class="container">
-        <div th:substituteby="./fragments/bodyHeader :: bodyHeader"></div>
         <table class="table table-stripped" style="width:600px;">
             <thead>
             <tr>
@@ -21,8 +21,8 @@
             </tr>
             </tbody>
         </table>
-        <div th:substituteby="./fragments/footer :: footer"></div>
     </div>
+    <div th:substituteby="fragments/footer :: footer"/>
 
 </body>
 </html>

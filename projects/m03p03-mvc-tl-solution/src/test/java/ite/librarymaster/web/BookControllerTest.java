@@ -37,7 +37,7 @@ public class BookControllerTest {
     public void testAllBook() throws Exception{
         this.mockMvc.perform(get("/books").accept(MediaType.TEXT_HTML))
         .andExpect(status().isOk()).
-        andExpect(view().name("books")).
+        andExpect(view().name("book/books")).
         andExpect(model().attribute("books", hasSize(4))).
         andExpect(model().attribute("books", hasItem(
                 allOf(
@@ -55,7 +55,7 @@ public class BookControllerTest {
     public void testBookDetail() throws Exception{
         this.mockMvc.perform(get("/book/1").accept(MediaType.TEXT_HTML))
         .andExpect(status().isOk())
-        .andExpect(view().name("bookDetail"))
+        .andExpect(view().name("book/book"))
         .andExpect(model().attribute("book", hasProperty("id", is(1L))))
         .andExpect(model().attribute("book", hasProperty("title", is("A Game of Thrones"))))
         .andExpect(model().attribute("book", hasProperty("author", is("George R. R. Martin"))))

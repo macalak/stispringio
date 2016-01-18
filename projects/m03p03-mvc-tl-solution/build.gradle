@@ -15,9 +15,9 @@ ext.servletVersion = '3.1.0'
 ext.jstlVersion = '1.2'
 ext.hibernateJpa21Version = '1.0.0.Final'
 ext.thymeleafVersion = '2.1.4.RELEASE'
-ext.jqueryVersion = '2.0.2'
-ext.jqueryUiVersion = '1.11.4'
-ext.bootstrapVersion = '3.0.1'
+ext.jqueryVersion = '2.2.0'
+ext.bootstrapVersion = '3.3.6'
+ext.fontAwesome = '4.5.0'
 
 ext.libraries = [
     spring: [
@@ -55,8 +55,7 @@ ext.libraries = [
     webjars: [
         "org.webjars:bootstrap:$bootstrapVersion",
         "org.webjars:jquery:$jqueryVersion",
-        "org.webjars:jquery-ui:$jqueryUiVersion",
-        "org.webjars:jquery-ui-themes:$jqueryUiVersion"
+        "org.webjars:font-awesome:$fontAwesome"
     ],
     jpa2:		  "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:$hibernateJpa21Version",	
     servlet:  "javax.servlet:javax.servlet-api:$servletVersion",
@@ -78,7 +77,6 @@ dependencies {
     compile     libraries.spring
     compile     libraries.logging
     compile     libraries.servlet
-    compile     libraries.jstl
     compile     libraries.jpa2
     compile     libraries.thymeleaf
     compile     libraries.webjars
