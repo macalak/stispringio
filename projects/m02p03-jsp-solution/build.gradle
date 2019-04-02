@@ -3,8 +3,8 @@ apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'idea'
 
-ext.slf4jVersion = '1.7.12'
-ext.log4jVersion = '1.2.17'
+ext.slf4jVersion = '1.7.25'
+ext.logbackVersion = '1.2.3'
 ext.junitVersion = '4.12'
 ext.servletVersion = '3.1.0'
 ext.jstlVersion = '1.2'
@@ -13,7 +13,7 @@ ext.libraries = [
     logging: [
          "org.slf4j:slf4j-api:$slf4jVersion",
          "org.slf4j:slf4j-log4j12:$slf4jVersion",
-         "log4j:log4j:$log4jVersion"
+         "ch.qos.logback:logback-classic:$logbackVersion"
     ],
 	servlet:  "javax.servlet:javax.servlet-api:$servletVersion",
 	jstl:     "javax.servlet:jstl:$jstlVersion",
@@ -35,5 +35,5 @@ dependencies {
 }
 
 task generateWrapper(type: Wrapper) {
-	gradleVersion = '2.7'
+	gradleVersion = '5.3.1'
 }

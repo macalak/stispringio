@@ -3,12 +3,12 @@ apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'idea'
 
-ext.springVersion = '4.2.2.RELEASE'
+ext.springVersion = '5.1.5.RELEASE'
 ext.jsr330Version=1
 ext.junitVersion = '4.12'
 ext.hamcrestVeriosn = '1.3'
-ext.slf4jVersion = '1.7.12'
-ext.log4jVersion = '1.2.17'
+ext.slf4jVersion = '1.7.25'
+ext.logbackVersion = '1.2.3'
 ext.hsqldbVersion = '2.3.2'
 ext.hibernateVersion = '4.3.9.Final'
 ext.servletVersion = '3.1.0'
@@ -44,7 +44,7 @@ ext.libraries = [
     logging: [
          "org.slf4j:slf4j-api:$slf4jVersion",
          "org.slf4j:slf4j-log4j12:$slf4jVersion",
-         "log4j:log4j:$log4jVersion"
+         "ch.qos.logback:logback-classic:$logbackVersion"
     ],
     hibernate: [
     	"org.hibernate:hibernate-core:$hibernateVersion",
@@ -107,5 +107,5 @@ dependencies {
 }
 
 task generateWrapper(type: Wrapper) {
-	gradleVersion = '2.7'
+	gradleVersion = '5.3.1'
 }

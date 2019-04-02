@@ -2,10 +2,11 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
-ext.springVersion = '4.2.2.RELEASE'
+ext.springVersion = '5.1.5.RELEASE'
 ext.junitVersion = '4.12'
-ext.slf4jVersion = '1.7.12'
-ext.log4jVersion = '1.2.17'
+ext.slf4jVersion = '1.7.25'
+ext.log4jVersion = '2.11.2'
+ext.logbackVersion = '1.2.3'
 ext.libraries = [
     spring: [
          "org.springframework:spring-beans:$springVersion",
@@ -17,7 +18,7 @@ ext.libraries = [
     logging: [
          "org.slf4j:slf4j-api:$slf4jVersion",
          "org.slf4j:slf4j-log4j12:$slf4jVersion",
-         "log4j:log4j:$log4jVersion"
+         "ch.qos.logback:logback-classic:$logbackVersion"
     ],
     junit: "junit:junit:$junitVersion"
 ]
@@ -38,5 +39,5 @@ dependencies {
 }
 
 task generateWrapper(type: Wrapper) {
-	gradleVersion = '2.7'
+	gradleVersion = '5.3.1'
 }
