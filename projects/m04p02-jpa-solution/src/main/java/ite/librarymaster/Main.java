@@ -10,7 +10,7 @@ import org.springframework.context.support.*;
 /**
  * Application entry point.
  * 
- * @author macalak@itexperts.sk
+ * @author ivan.macalak@posam.sk
  *
  */
 

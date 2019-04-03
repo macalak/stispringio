@@ -10,7 +10,7 @@ import javax.persistence.Transient;
 /**
  * This class models a Book media type.
  * 
- * @author macalak@itexperts.sk
+ * @author ivan.macalak@posam.sk
  *
  */
 

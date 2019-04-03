@@ -24,7 +24,7 @@ Bean itself using Spring container extension points.
    Re-run the JdbcBookRepositoryTest test and check output console for appropriate log messages.
  
 3. It is good practice to externalize configuration variables into separate .properties files and use placeholders
-   instead real values in container configuration xml file. Spring comes with usefull PropertyPlacehoderConfigurer
+   instead real values in container configuration xml file. Spring comes with useful PropertyPlacehoderConfigurer
    BeanFactoryPostProcessor which replaces bean property placeholders with values from .properties file. Remember
    that BeanFactoryPostProcessor is able to change Beans DEFINITION.
     
@@ -73,7 +73,7 @@ Bean itself using Spring container extension points.
    
    The application should now works as expected.
    	   	
-5. You have learned how to use container life-cycle callbacks and usefull predefined BeanFactoryPostProcessor and BeanPostProcessor.
+5. You have learned how to use container life-cycle callbacks and useful predefined BeanFactoryPostProcessor and BeanPostProcessor.
    Now you can write and try your own PostProcessors.   
    
    

@@ -9,16 +9,16 @@ ext.junitVersion = '4.12'
 ext.hamcrestVeriosn = '1.3'
 ext.slf4jVersion = '1.7.25'
 ext.logbackVersion = '1.2.3'
-ext.hsqldbVersion = '2.3.2'
-ext.hibernateVersion = '4.3.9.Final'
-ext.servletVersion = '3.1.0'
+ext.hsqldbVersion = '2.4.1'
+ext.hibernateVersion = '5.3.7.Final'
+ext.servletVersion = '4.0.1'
 ext.jstlVersion = '1.2'
-ext.hibernateJpa21Version = '1.0.0.Final'
-ext.thymeleafVersion = '2.1.4.RELEASE'
+ext.jpaVersion = '2.2'
+ext.thymeleafVersion = '3.0.11.RELEASE'
 ext.jqueryVersion = '2.0.2'
 ext.jqueryUiVersion = '1.11.4'
 ext.bootstrapVersion = '3.0.1'
-ext.jacksonVersion = '2.4.5'
+ext.jacksonVersion = '2.9.8'
 
 ext.libraries = [
     spring: [
@@ -29,8 +29,8 @@ ext.libraries = [
          "org.springframework:spring-context-support:$springVersion",
          "org.springframework:spring-core:$springVersion",
          "org.springframework:spring-expression:$springVersion",
-         "org.springframework:spring-instrument:$springVersion",
-         "org.springframework:spring-instrument-tomcat:$springVersion",
+//         // "org.springframework:spring-instrument:$springVersion",
+//         // "org.springframework:spring-instrument-tomcat:$springVersion",
          "org.springframework:spring-jdbc:$springVersion",
          "org.springframework:spring-orm:$springVersion",
          "org.springframework:spring-test:$springVersion",
@@ -50,7 +50,7 @@ ext.libraries = [
     ],
     thymeleaf: [
         "org.thymeleaf:thymeleaf:$thymeleafVersion",
-        "org.thymeleaf:thymeleaf-spring4:$thymeleafVersion",
+        "org.thymeleaf:thymeleaf-spring5:$thymeleafVersion",
 
     ],
     webjars: [
@@ -59,7 +59,7 @@ ext.libraries = [
         "org.webjars:jquery-ui:$jqueryUiVersion",
         "org.webjars:jquery-ui-themes:$jqueryUiVersion"
     ],
-    jpa2:		  "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:$hibernateJpa21Version",
+    jpa: "javax.persistence:javax.persistence-api:$jpaVersion",
     servlet:  "javax.servlet:javax.servlet-api:$servletVersion",
     jstl:     "javax.servlet:jstl:$jstlVersion",
     junit: "junit:junit:$junitVersion",
@@ -81,7 +81,7 @@ dependencies {
     compile     libraries.logging
     compile     libraries.servlet
     compile     libraries.jstl
-    compile     libraries.jpa2
+    compile     libraries.jpa
     compile     libraries.thymeleaf
     compile     libraries.webjars
     compile     libraries.jackson

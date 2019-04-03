@@ -24,19 +24,29 @@ public class LibraryServiceImplTest {
 	 * The object being tested.
 	 */
 	private LibraryService libraryService;
+	LibraryService service2;
+	ApplicationContext context;
 	
 	@Before
 	public void setUp() {
 		// Create the test configuration for the application
-		ApplicationContext context = new ClassPathXmlApplicationContext(
+		 context = new ClassPathXmlApplicationContext(
 				"classpath:/ite/librarymaster/application-config.xml");
 		// Get the tested bean
-		libraryService = context.getBean(LibraryService.class);
+		libraryService = context.getBean("libraryService",LibraryService.class);
+		//service2= context.getBean("libraryService2",LibraryService.class);
+		System.out.println("");
+	}
+
+	@After
+	public void tearDown(){
+		((ConfigurableApplicationContext)context).close();
 	}
 
 	@Test
 	public void testGetAllBooks() {
 		List<Book> allBooks = libraryService.getAllBooks();
+		libraryService.getAllBooks();
 		assertNotNull(allBooks);
 		// Verify number of books returned
 		assertEquals(4,allBooks.size());

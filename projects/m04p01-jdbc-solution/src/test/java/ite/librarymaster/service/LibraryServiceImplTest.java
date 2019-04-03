@@ -7,8 +7,10 @@ import java.util.*;
 import org.junit.*;
 import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.*;
 import org.springframework.test.context.junit4.*;
+import org.springframework.transaction.annotation.Transactional;
 
 @ContextConfiguration
 /*
@@ -23,6 +25,7 @@ public class LibraryServiceImplTest {
     private LibraryService libraryService;
 
     @Test
+    @DirtiesContext
     public void testGetAllBooks() {
         List<Book> allBooks = libraryService.getAllBooks();
         assertNotNull(allBooks);

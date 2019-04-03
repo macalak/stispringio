@@ -8,7 +8,7 @@ import java.util.List;
  * Book Repository interface defines operations to
  * access and manipulate Books.
  * 
- * @author macalak@itexperts.sk
+ * @author ivan.macalak@posam.sk
  *
  */
 public interface BookRepository {

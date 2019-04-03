@@ -2,7 +2,7 @@ package ite.librarymaster.model;
 
 /**
  * Defines Library Medium aviability enumeration.
- * @author macalak@itexperts.sk
+ * @author ivan.macalak@posam.sk
  *
  */
 public enum MediumAvailability {

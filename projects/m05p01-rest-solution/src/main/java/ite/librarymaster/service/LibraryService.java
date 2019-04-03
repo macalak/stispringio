@@ -8,5 +8,5 @@ public interface LibraryService {
 	
 	List<Book> getAllBooks();
 	Book getBook(Long id) throws ItemNotFoundException;
-
+	Book addBook(Book book);
 }

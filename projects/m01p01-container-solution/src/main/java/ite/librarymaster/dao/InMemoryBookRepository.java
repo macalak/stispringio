@@ -29,6 +29,10 @@ public class InMemoryBookRepository implements BookRepository {
 		books.put("9781849162883", new Book(3L,"LM-000003","The Girl with the Dragon Tattoo","Quercus Publishing Plc","Stieg Larsson","9781849162883",BookGenre.Crime, MediumAvailability.Available));
 		books.put("9780553382563", new Book(4L,"LM-000004","I, Robot","Random House Inc","Isaac Asimov","9780553382563",BookGenre.Scifi, MediumAvailability.Available));
 	}
+
+	public void destroy(){
+		logger.info("destroy() <-");
+	}
 	
 	@Override
 	public List<Book> findAll() {

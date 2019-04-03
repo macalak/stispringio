@@ -33,9 +33,9 @@ public class JpaBookRepository implements BookRepository {
     }
 
 	@Override
-	public void saveBook(Book book) {
+	public Book saveBook(Book book) {
 		entityManager.persist(book);
-
+		return book;
 	}
 
 

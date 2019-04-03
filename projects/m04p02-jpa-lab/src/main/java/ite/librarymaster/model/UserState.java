@@ -7,7 +7,7 @@ package ite.librarymaster.model;
  *  Inactive - Inactive user (no membership dues paid)
  *  Blocked  - Blocked user (no penalty paid)
  *  
- * @author macalak@itexperts.sk
+ * @author ivan.macalak@posam.sk
  *
  */
 public enum UserState {

@@ -6,7 +6,7 @@ import javax.persistence.*;
  * 
  * This class models general Medium, which can be stored in Library.
  * 
- * @author macalak@itexperts.sk
+ * @author ivan.macalak@posam.sk
  *
  */
 @Entity

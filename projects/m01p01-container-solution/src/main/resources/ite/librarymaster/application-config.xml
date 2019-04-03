@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	    xmlns:aop="http://www.springframework.org/schema/aop"
 		xsi:schemaLocation="http://www.springframework.org/schema/beans
-							http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+							http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+							http://www.springframework.org/schema/aop
+							http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<!-- Configuration for the library master application.  Beans here define the heart of the application logic. -->
 
+
 	<!-- Library Master: entry-point of the application (main service)-->
-	<bean id="libraryService"  class="ite.librarymaster.service.LibraryServiceImpl">
-	    <constructor-arg ref="bookRepository"/>
-		<constructor-arg>
-			<bean class="ite.librarymaster.dao.InMemoryUserRepository" init-method="initialize"/>
-		</constructor-arg>
+	<bean id="libraryService"  class="ite.librarymaster.service.LibraryServiceImpl" autowire="byType">
+	    <!--<constructor-arg ref="bookRepository"/>-->
+		<!--<constructor-arg>-->
+			<!--<bean class="ite.librarymaster.dao.InMemoryUserRepository" init-method="initialize"/>-->
+		<!--</constructor-arg>-->
 		<!-- <property name="bookRepository" ref="bookRepository"/> -->
+	</bean>
+
+	<bean id="libraryService2"  class="ite.librarymaster.service.LibraryServiceImpl" autowire="byType">
+
 	</bean>
     
 	<!-- Book repository -->
-	<bean id="bookRepository" class="ite.librarymaster.dao.InMemoryBookRepository" init-method="initialize"/>
-    
+	<bean id="bookRepository" class="ite.librarymaster.dao.InMemoryBookRepository" init-method="initialize"
+	scope="prototype" destroy-method="destroy" lazy-init="true">
+		<aop:scoped-proxy/>
+	</bean>
+
+
 	<!-- User repository -->
-	<!--<bean id="userRepository" class="ite.librarymaster.dao.InMemoryUserRepository" init-method="initialize"/>-->
+	<bean id="userRepository" class="ite.librarymaster.dao.InMemoryUserRepository" init-method="initialize"/>
     
 </beans>

@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 /**
  * This class models general textual media types.
  * 
- * @author macalak@itexperts.sk
+ * @author ivan.macalak@posam.sk
  *
  */
 

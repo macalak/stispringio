@@ -5,7 +5,7 @@ import javax.persistence.*;
 /**
  * This class models the Library user.
  *  
- * @author macalak@itexperts.sk
+ * @author ivan.macalak@posam.sk
  *
  */
 @Entity

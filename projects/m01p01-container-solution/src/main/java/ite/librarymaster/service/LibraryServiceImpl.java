@@ -13,11 +13,16 @@ public class LibraryServiceImpl implements LibraryService {
 	private BookRepository bookRepository;
 	private UserRepository userRepository;
 
-	public LibraryServiceImpl(UserRepository userRepository, BookRepository bookRepository) {
-		super();
-		logger.info("LibraryServiceImpl() <-");
+//	public LibraryServiceImpl(UserRepository userRepository, BookRepository bookRepository) {
+//		super();
+//		logger.info("LibraryServiceImpl() <-");
+//		this.userRepository = userRepository;
+//		this.bookRepository = bookRepository;
+//	}
+
+
+	public void setUserRepository(UserRepository userRepository) {
 		this.userRepository = userRepository;
-		this.bookRepository = bookRepository;
 	}
 
 	@Override

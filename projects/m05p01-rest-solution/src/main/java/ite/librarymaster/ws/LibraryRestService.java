@@ -10,10 +10,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * LibraryService REST API implementation.
@@ -46,8 +43,16 @@ public class LibraryRestService {
     //http://localhost:8080/m05p01-rest-solution/library/api/book/1
     @RequestMapping(produces={"application/json"}, value="/api/book/{id}", method=RequestMethod.GET )
     public Book bookDetail(@PathVariable("id") Long id) throws ItemNotFoundException{
-    	LOGGER.info("bookDetail() <-"); 
+    	LOGGER.info("bookDetail() <-");
         return libraryService.getBook(id);
     }
-   
+
+    @RequestMapping(produces={"application/json"},
+                    consumes = {"application/json"},
+                    value="/api/book", method=RequestMethod.POST )
+    public Book addBook(@RequestBody Book book) throws ItemNotFoundException{
+    	LOGGER.info("addDetail() <-");
+        return libraryService.addBook(book);
+    }
+
 }
